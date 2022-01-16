@@ -1,0 +1,22 @@
+# ansible creates a working directory for the downloads for each app
+# example: {{ download }}/anyconnect/
+download: "{{ ansible_env.HOME }}/.anyconnect_downloads"
+extract: "{{ download }}/anyconnect"
+installer:  "anyconnect-linux64-4.9.06037-predeploy-k9.tar.gz"
+
+
+# ansible creates a working directory for the downloads for each app
+# example: {{ download }}/anyconnect/
+download: "{{ ansible_env.HOME }}/.anyconnect_downloads"
+extract: "{{ download }}/anyconnect"
+
+# path to the  installer in S3
+anyconnect_s3_path: anyconnect/linux/x86_64
+# installer file name
+installer: anyconnect-linux64-4.9.06037-predeploy-k9.tar.gz
+# strip after version: anyconnect-linux64-4.9.06037
+anyconnect_installer_base: "{{ installer.split('-predeploy-') | first }}"
+# run the installer from this dir
+anyconnect_installer_chdir: "{{ extract }}/{{ anyconnect_installer_base }}/vpn"
+# s3 uri
+s3_uri: "s3://{{ download_bucket }}/{{ anyconnect_s3_path }}/{{ installer }}"
