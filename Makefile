@@ -4,7 +4,7 @@ DEFAULT_BRANCH := main
 # Determine this makefile's path.
 # Be sure to place this BEFORE `include` directives, if any.
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
-VERSION := 0.0.1
+VERSION := 0.0.2
 #  use the long commit id
 COMMIT := $(shell git rev-parse HEAD)
 ROLE_DIRS := defaults files handlers meta playbook tasks templates test
